@@ -1,0 +1,29 @@
+.tasks__input {
+    padding: 10px;
+    min-width: 200px;
+}
+
+.task {
+    outline: 1px solid #000;
+    width: fit-content;
+    min-width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.attach {
+    float: right;
+}
+
+.tasks__list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.tasks__list li {
+    margin-bottom: 10px;
+}
+
+.tasks__list li:last-child {
+    margin-bottom: 0;
+}
