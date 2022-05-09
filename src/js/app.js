@@ -1,9 +1,9 @@
-
+import Task from './Task';
 
 const form = document.getElementById('tasks-form');
 const input = document.getElementById('tasks-input');
-const tasksAll = document.getElementById('tasks-all');
-
+export const tasksList = document.getElementById('tasks-all');
+export const tasksArr = [];
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -11,19 +11,33 @@ form.addEventListener('submit', (e) => {
     const inputText = input.value.trim();
 
     if(inputText) {
-        addTask(inputText);
+        const newTask = new Task(inputText);
+        tasksArr.push(newTask);
+        buildTasksList(tasksArr, tasksList);
         input.value = '';
     } else {
         console.log('Атата');
     }
-})
+});
 
-input.addEventListener('keydown', (e) => {
-    // console.log(e.key);
-    // console.log(input.value);
-})
+input.addEventListener('input', () => {
+    buildTasksList(containsText(tasksArr, input.value), tasksList);
+});
 
-function addTask(text) {
+export function containsText(data, search) {
+    const clean = search.trim().toLowerCase();
+    return data.filter(item => item.text.toLowerCase().includes(clean));
+}
+
+export function buildTasksList(tasksArr, tasksList) {
+    tasksList.innerHTML = '';
+
+    tasksArr.forEach(element => {
+        addTask(element);
+    });
+};
+
+export function addTask(task) {
     const li = document.createElement('li');
 
     const divTask = document.createElement('div');
@@ -31,7 +45,7 @@ function addTask(text) {
 
     const spanTask = document.createElement('span');
     spanTask.className = 'text';
-    spanTask.innerText = text;
+    spanTask.innerText = task.text;
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
@@ -41,5 +55,5 @@ function addTask(text) {
     divTask.append(checkbox);
     li.append(divTask);
 
-    tasksAll.append(li);
+    tasksList.append(li);
 }
