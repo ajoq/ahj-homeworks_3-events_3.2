@@ -15,10 +15,21 @@ form.addEventListener('submit', (e) => {
         tasksArr.push(newTask);
         buildTasksList(tasksArr, tasksList);
         input.value = '';
+        emptyInputHide();
     } else {
-        console.log('Атата');
+        emptyInputDisplay();
     }
 });
+
+function emptyInputDisplay() {
+    const liNoTasks = document.querySelector('.error');
+    liNoTasks.classList.remove('no-display');
+}
+
+function emptyInputHide() {
+    const liNoTasks = document.querySelector('.error');
+    liNoTasks.classList.add('no-display');
+}
 
 input.addEventListener('input', () => {
     buildTasksList(containsText(tasksArr, input.value), tasksList);
@@ -32,10 +43,25 @@ export function containsText(data, search) {
 export function buildTasksList(tasksArr, tasksList) {
     tasksList.innerHTML = '';
 
-    tasksArr.forEach(element => {
-        addTask(element);
-    });
+    if (tasksArr.length === 0) {
+        noTasksFoundDisplay();
+    } else {
+        noTasksFoundHide();
+        tasksArr.forEach(element => {
+            addTask(element);
+        });
+    }
 };
+
+function noTasksFoundDisplay() {
+    const liNoTasks = document.querySelector('.noTasks');
+    liNoTasks.classList.remove('no-display');
+}
+
+function noTasksFoundHide() {
+    const liNoTasks = document.querySelector('.noTasks');
+    liNoTasks.classList.add('no-display');
+}
 
 export function addTask(task) {
     const li = document.createElement('li');

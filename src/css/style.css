@@ -27,3 +27,11 @@
 .tasks__list li:last-child {
     margin-bottom: 0;
 }
+
+.no-display {
+    display: none;
+}
+
+.error {
+    color: red;
+}
