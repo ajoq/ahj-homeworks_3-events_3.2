@@ -84,7 +84,7 @@ export default class TasksList {
 
   containsText(arrTasks, tasksAllList) {
     const clean = tasksAllList.trim().toLowerCase();
-    return arrTasks.filter((item) => item.text.toLowerCase().includes(clean));
+    return arrTasks.filter((item) => item.text.toLowerCase().startsWith(clean));
   }
 
   taskPinned(e, arrTasks, tasksPinnedList, tasksAllList) {
