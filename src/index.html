@@ -15,15 +15,17 @@
         </form>
         <p class="error no-display">Error! Input empty </p>  
         <p>===</p>  
-        <p>Pinned:</p>
-        <p class="tasks__no-pinned">No pinned tasks</p>
-        <ul class="tasks__list">
-        </ul>
+        <div id="pinned-tasks">
+            <p>Pinned:</p>
+            <p class="tasks__no-pinned">No pinned tasks</p>
+            <ul class="tasks__list" id="tasks-pinned"></ul>
+        </div>
         <p>===</p>
-        <p>All Tasks:</p>
-        <div class="noTasks">No tasks found</div>
-        <ul class="tasks__list" id="tasks-all">
-        </ul>
+        <div id="all-tasks">
+            <p>All Tasks:</p>
+            <div class="noTasks">No tasks found</div>
+            <ul class="tasks__list" id="tasks-list"></ul>
+        </div>
     </div>
 </body>
 </html>

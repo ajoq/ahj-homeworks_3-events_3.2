@@ -2,7 +2,12 @@ import Task from './Task';
 
 const form = document.getElementById('tasks-form');
 const input = document.getElementById('tasks-input');
-export const tasksList = document.getElementById('tasks-all');
+
+const tasksPinnedDiv = document.getElementById('pinned-tasks');
+const tasksListDiv = document.getElementById('all-tasks');
+
+const tasksPinnedList = document.getElementById('tasks-pinned');
+const tasksList = document.getElementById('tasks-list');
 export const tasksArr = [];
 
 form.addEventListener('submit', (e) => {
@@ -19,6 +24,8 @@ form.addEventListener('submit', (e) => {
     } else {
         emptyInputDisplay();
     }
+
+    console.log(tasksArr);
 });
 
 function emptyInputDisplay() {
@@ -48,7 +55,9 @@ export function buildTasksList(tasksArr, tasksList) {
     } else {
         noTasksFoundHide();
         tasksArr.forEach(element => {
-            addTask(element);
+            if (element.pinned === false) {
+                addTask(element);
+            }            
         });
     }
 };
@@ -65,6 +74,7 @@ function noTasksFoundHide() {
 
 export function addTask(task) {
     const li = document.createElement('li');
+    li.dataset.id = task.id;
 
     const divTask = document.createElement('div');
     divTask.className = 'task';
@@ -82,4 +92,64 @@ export function addTask(task) {
     li.append(divTask);
 
     tasksList.append(li);
+}
+
+tasksListDiv.addEventListener('click', (e) => taskPinnedIn(e));
+tasksPinnedDiv.addEventListener('click', (e) => taskPinnedOut(e));
+
+function taskPinnedIn(e) {
+    const checkbox = e.target.closest('input.attach');
+
+    if (!checkbox) return;
+
+    const pinnedTask = checkbox.closest('li');
+
+    tasksArr.find(item => {
+        if (item.id === +pinnedTask.dataset.id) {
+            item.pinned = true;
+        }
+    });
+
+    buildPinnedTasksList(pinnedTask, tasksPinnedList);
+
+   if (tasksPinnedList.children.length > 0) {
+       noPinnedTasksHide();
+   }
+
+};
+
+function buildPinnedTasksList(pinnedTask, tasksPinnedList) {
+    tasksPinnedList.append(pinnedTask);
+}
+
+function taskPinnedOut(e) {
+    const checkbox = e.target.closest('input.attach');
+
+    if (!checkbox) return;
+
+    const pinnedTask = checkbox.closest('li');
+
+    tasksArr.find(item => {
+        if (item.id === +pinnedTask.dataset.id) {
+            item.pinned = false;
+        }
+    });
+
+    tasksList.append(pinnedTask);
+
+    buildTasksList(tasksArr, tasksList);
+
+    if (tasksPinnedList.children.length === 0) {
+        noPinnedTasksDisplay();
+       }
+}
+
+function noPinnedTasksDisplay() {
+    const liNoPinnedTasks = document.querySelector('.tasks__no-pinned');
+    liNoPinnedTasks.classList.remove('no-display');
+}
+
+function noPinnedTasksHide() {
+    const liNoPinnedTasks = document.querySelector('.tasks__no-pinned');
+    liNoPinnedTasks.classList.add('no-display');
 }
