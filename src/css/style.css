@@ -1,37 +1,51 @@
-.tasks__input {
-    padding: 10px;
-    min-width: 200px;
-}
-
-.task {
-    outline: 1px solid #000;
-    width: fit-content;
-    min-width: 200px;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.attach {
-    float: right;
-}
-
-.tasks__list {
-    list-style-type: none;
-    padding: 0;
-}
-
-.tasks__list li {
+.tasks-header {
+    font-weight: bold;
     margin-bottom: 10px;
 }
 
-.tasks__list li:last-child {
-    margin-bottom: 0;
+.tasks-form__input {
+    padding: 10px;
+    min-width: 200px;
+}
+
+.tasks-form__error {
+    color: red;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.tasks-pinned__list, .tasks-all__list {
+    list-style-type: none;
+    padding: 0;
 }
 
 .no-display {
     display: none;
 }
 
-.error {
-    color: red;
+.tasks-item {
+    outline: 1px solid #000;
+    width: fit-content;
+    min-width: 200px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.tasks-item:last-child {
+    margin-bottom: 0;
+}
+
+.tasks-item__attach {
+    float: right;
+}
+
+.tasks-pinned__empty, .tasks-all__empty {
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.tasks-pinned, .tasks-all {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

@@ -9,22 +9,22 @@
 </head>
 <body>
     <div class="tasks">
-        <p>TOP Tasks</p>
-        <form id="tasks-form">
-            <input type="text" class="tasks__input" id="tasks-input" name="tasks-input">
+        <div class="tasks-header">TOP Tasks</div>
+        <form class="tasks-form">
+            <input type="text" class="tasks-form__input" name="tasks-form__input">
+            <div class="tasks-form__error no-display">Error! Input empty </div>  
         </form>
-        <p class="error no-display">Error! Input empty </p>  
-        <p>===</p>  
-        <div id="pinned-tasks">
-            <p>Pinned:</p>
-            <p class="tasks__no-pinned">No pinned tasks</p>
-            <ul class="tasks__list" id="tasks-pinned"></ul>
+        <div class="tasks-pinned">
+            <div class="tasks-pinned__header">Pinned:</div>
+            <div class="tasks-pinned__empty">No pinned tasks</div>
+            <ul class="tasks-pinned__list">
+            </ul>
         </div>
-        <p>===</p>
-        <div id="all-tasks">
-            <p>All Tasks:</p>
-            <div class="noTasks">No tasks found</div>
-            <ul class="tasks__list" id="tasks-list"></ul>
+        <div class="tasks-all">
+            <div class="tasks-all__header">All Tasks:</div>
+            <div class="tasks-all__empty">No tasks found</div>
+            <ul class="tasks-all__list">
+            </ul>
         </div>
     </div>
 </body>

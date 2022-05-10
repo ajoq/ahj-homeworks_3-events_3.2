@@ -1,9 +1,11 @@
-import {tasksArr} from './app';
-
 export default class Task {
     constructor(text) {
         this.text = text;
-        this.id = tasksArr.length;
+        this.id = 0;
         this.pinned = false;
+    }
+
+    setId(number) {
+        this.id = number;
     }
 }
