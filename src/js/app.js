@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 import TasksList from './TasksList';
 
-const taskList = new TasksList();
+new TasksList();
